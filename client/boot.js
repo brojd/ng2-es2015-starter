@@ -16,6 +16,7 @@ import { AUTH_PROVIDERS, AUTH_DECLARATIONS } from './app/auth';
 
 // Feature Modules
 import { AboutModule } from './app/feature_modules/about';
+import { MyProfileModule } from './app/feature_modules/my-profile';
 
 if (ENVIRONMENT === 'production') {
   enableProdMode();
@@ -24,7 +25,7 @@ if (ENVIRONMENT === 'production') {
 @NgModule({
   declarations: [CORE_DECLARATIONS, AUTH_DECLARATIONS],
   imports: [
-    HttpModule, BrowserModule, FormsModule, ReactiveFormsModule, AboutModule,
+    HttpModule, BrowserModule, FormsModule, ReactiveFormsModule, AboutModule, MyProfileModule,
     TranslateModule.forRoot(),
     RouterModule.forRoot(routes, {
       useHash: true

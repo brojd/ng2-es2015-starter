@@ -19,15 +19,17 @@ export class UserService {
   }
 
   login(credentials) {
+    debugger;
     return this._http
-      .post(`${API_URL}/employees/login`, JSON.stringify(credentials))
+      .post(`${API_URL}/login`, credentials)
       .map(res => res.json())
       .map(res => {
-        debugger;
-        this._storage.setUserDetails(res.Id, res.First, res.Last, res.FullName, res.PositionId);
-        this._storage.setAuthToken(res.Id); // this should be a real token generated on backend
-        this._loggedIn.next(true);
-        return res;
+        if (res.success) {
+          debugger;
+          this._storage.setAuthToken(res.token); // this should be a real token generated on backend
+          this._loggedIn.next(true);
+        }
+        return res.success;
       })
   }
 
