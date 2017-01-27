@@ -17,14 +17,6 @@ export class MenuComponent {
   getLoggedIn() {
     return this.userService.getLoggedIn();
   }
-  
-  getUserName() {
-    return this.userService.getUserName();
-  }
-  
-  getCurrentUserRole() {
-    return this.userService.getCurrentUserRole();
-  }
 
   logout() {
     this.isLoggedIn = this.userService.isLoggedIn();

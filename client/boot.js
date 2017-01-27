@@ -15,12 +15,7 @@ import { CORE_PROVIDERS, CORE_DECLARATIONS, AppComponent } from './app/core';
 import { AUTH_PROVIDERS, AUTH_DECLARATIONS } from './app/auth';
 
 // Feature Modules
-import { TimesheetsModule } from './app/feature_modules/timesheets';
-import { DashboardModule } from './app/feature_modules/dashboard';
-import { AdminModule } from './app/feature_modules/admin';
-import { TaskModule } from './app/feature_modules/task';
-import { EmployeeModule } from './app/feature_modules/employee';
-import { ProjectModule } from './app/feature_modules/project';
+import { AboutModule } from './app/feature_modules/about';
 
 if (ENVIRONMENT === 'production') {
   enableProdMode();
@@ -29,8 +24,7 @@ if (ENVIRONMENT === 'production') {
 @NgModule({
   declarations: [CORE_DECLARATIONS, AUTH_DECLARATIONS],
   imports: [
-    HttpModule, BrowserModule, FormsModule, ReactiveFormsModule, TimesheetsModule, DashboardModule,
-    AdminModule, TaskModule, EmployeeModule, ProjectModule,
+    HttpModule, BrowserModule, FormsModule, ReactiveFormsModule, AboutModule,
     TranslateModule.forRoot(),
     RouterModule.forRoot(routes, {
       useHash: true

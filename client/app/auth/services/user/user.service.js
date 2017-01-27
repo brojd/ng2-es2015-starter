@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import { HttpWrapper } from '../../../core/services/HttpWrapper.service';
+import { Http } from '@angular/http';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { StorageService } from '../storage/storage.service';
-import { adminId, positionPmId } from '../../../../config';
 import { API_URL } from '../../../../config';
 
 @Injectable()
@@ -10,7 +9,7 @@ export class UserService {
 
   _loggedIn = new BehaviorSubject(false);
 
-  constructor(http: HttpWrapper, storage: StorageService) {
+  constructor(http: Http, storage: StorageService) {
     this._http = http;
     this._storage = storage;
 
@@ -24,6 +23,7 @@ export class UserService {
       .post(`${API_URL}/employees/login`, JSON.stringify(credentials))
       .map(res => res.json())
       .map(res => {
+        debugger;
         this._storage.setUserDetails(res.Id, res.First, res.Last, res.FullName, res.PositionId);
         this._storage.setAuthToken(res.Id); // this should be a real token generated on backend
         this._loggedIn.next(true);
@@ -43,36 +43,6 @@ export class UserService {
 
   getLoggedIn() {
     return this._loggedIn;
-  }
-  
-  getUserName() {
-    return this._storage.getUserName();
-  }
-  
-  getUserId() {
-    return this._storage.getUserId();
-  }
-  
-  getPositionId() {
-    return this._storage.getPositionId();
-  }
-  
-  isLoggedUserAdmin() {
-    return Number(this.getUserId()) === Number(adminId);
-  }
-  
-  isLoggedUserPM() {
-    return Number(this.getPositionId()) === Number(positionPmId);
-  }
-  
-  getCurrentUserRole() {
-    if (this.isLoggedUserAdmin()) {
-      return 'admin';
-    } else if (this.isLoggedUserPM()) {
-      return 'pm';
-    } else if (this.getLoggedIn()) {
-      return 'employee';
-    }
   }
   
 }
