@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule }        from '@angular/forms';
-import { PtSpinnerComponent } from './components/pt-spinner/pt-spinner.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   imports: [ CommonModule, FormsModule ],
-  declarations: [ PtSpinnerComponent ],
-  exports:      [ PtSpinnerComponent ]
+  declarations: [ SpinnerComponent ],
+  exports:      [ SpinnerComponent ]
 })
-export class PtCommonModule { }
+export class AppCommonModule { }
